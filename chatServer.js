@@ -32,7 +32,7 @@ io.on('connect', function(socket) {
   socket.on('loaded', function() { // we wait until the client has loaded and contacted us that it is ready to go.
 
     socket.emit('answer', "Hey, hello I am \"MathBot\" a simple chat bot example."); //We start with the introduction;
-    setTimeout(timedQuestion, 1000, socket, "What is your name?"); // Wait a moment and respond with a question.
+    setTimeout(timedQuestion, 3000, socket, "What is your name?"); // Wait a moment and respond with a question.
 
   });
   socket.on('message', (data) => { // If we get a new message from the client we process it;
@@ -58,7 +58,7 @@ async function bot(data, socket, questionNum) {
     answer = await wquery(input, questionNum);
     console.log("updating question num is" + questionNum);
     // 'Hello ' + input + ' :-)'; // output response
-    waitTime = 5000;
+    waitTime = 3000;
     question = 'Tell me your age as a math question'; // load next question
   }
   else if (questionNum == 1) {
