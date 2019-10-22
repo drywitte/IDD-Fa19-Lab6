@@ -58,7 +58,7 @@ async function bot(data, socket, questionNum) {
     answer = await wquery(input, questionNum);
     console.log("updating question num is" + questionNum);
     // 'Hello ' + input + ' :-)'; // output response
-    waitTime = 3000;
+    waitTime = 5000;
     question = 'Tell me your age as a math question'; // load next question
   }
   else if (questionNum == 1) {

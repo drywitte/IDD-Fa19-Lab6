@@ -4,12 +4,24 @@ var questionRecieved = false;
 // keep count of question, used for IF condition.
 var output = document.getElementById('output'); // store id="output" in output variable
 output.innerHTML = "<h1 id=response> </h1>"; // ouput first question
+var timer;
+
+
+function loading() {
+  console.log("should be loading");
+  let loaderHTML = document.getElementById('loader');
+  loaderHTML = document.getElementById('loader');
+  let loader = loaderHTML.innerText + ".";
+  loaderHTML.innerText = loader;
+}
 
 function sendMessage() {
   var input = document.getElementById("input").value;
   socket.emit('message', input);
   document.getElementById("input").value = "";
   document.getElementById("input").style.display = "none";
+  timer = window.setInterval(loading, 400);
+  document.getElementById('loader').style.display = "block";
 }
 
 //push enter key (using jquery), to run bot function.
@@ -26,7 +38,11 @@ function changeText(input) {
 
 socket.on('answer', function(msg) {
   console.log('Incomming answer:', msg);
+  clearInterval(timer);
+  document.getElementById('loader').style.display = "none";
+  document.getElementById('loader').innerText = "Loading..";
   changeText(msg);
+  document.getElementById('loader').innerText = "";
 });
 socket.on('question', function(msg) {
   console.log('Incomming Question:', msg);
